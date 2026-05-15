@@ -228,7 +228,7 @@
             btnXoa.Size = new Size(275, 81);
             btnXoa.TabIndex = 10;
             btnXoa.Text = "Xoá";
-            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.UseVisualStyleBackColor = true ;
             // 
             // btnSua
             // 
