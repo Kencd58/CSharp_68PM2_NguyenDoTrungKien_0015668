@@ -34,6 +34,8 @@ namespace Window_Form_App
             cbGioiTinh.Items.Add("Nữ");
             cbGioiTinh.SelectedIndex = 0;
             dgvSinhVien.CellClick += dgvSinhVien_CellClick;
+            btnSua.Click += btnSua_Click;
+            btnXoa.Click += btnXoa_Click;
 
             this.Load += UCQLSV_Load;
         }
@@ -86,5 +88,42 @@ namespace Window_Form_App
                 dtpNgaySinh.Value = Convert.ToDateTime(row.Cells["colNgaySinh"].Value);
             }
         }
-    }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            string MaSinhVien = txtMSV.Text;
+            DataClasses1DataContext db = new DataClasses1DataContext();
+            sinh_vien sv = db.sinh_viens.FirstOrDefault(s => s.ma_sv == MaSinhVien);
+            if (sv != null)
+            {
+                sv.ho_ten = txtHoTen.Text;
+                sv.gioi_tinh = cbGioiTinh.Text;
+                sv.ngay_sinh = dtpNgaySinh.Value;
+                db.SubmitChanges();
+                MessageBox.Show("Cập nhật sinh viên thành công!");
+                LoadData();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy sinh viên với mã đã nhập.");
+            }
+        }
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            string MaSinhVien = txtMSV.Text;
+            DataClasses1DataContext db = new DataClasses1DataContext();
+            sinh_vien sv = db.sinh_viens.FirstOrDefault(s => s.ma_sv == MaSinhVien);
+            if (sv != null)
+            {
+                db.sinh_viens.DeleteOnSubmit(sv);
+                db.SubmitChanges();
+                MessageBox.Show("Xóa sinh viên thành công!");
+                LoadData();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy sinh viên với mã đã nhập.");
+            }
+        }
+}
 }
