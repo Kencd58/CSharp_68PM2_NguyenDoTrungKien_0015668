@@ -1,0 +1,1 @@
+Thưa thầy, file cũ em bị lỗi phần kết nối database nên em tạo 1 file mới để làm lại, lúc push có nhỡ dùng git push --force nên xoá mất commit cũ ạ. Nếu thầy có chấm điểm theo thời gian commit thì mong thầy xem xét giúp em ạ, em cảm ơn thầy
