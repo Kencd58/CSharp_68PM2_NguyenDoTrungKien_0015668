@@ -311,7 +311,7 @@ namespace Window_Form_App
             this.dgvSinhVien.Name = "dgvSinhVien";
             this.dgvSinhVien.RowHeadersVisible = false;
             this.dgvSinhVien.RowHeadersWidth = 82;
-            this.dgvSinhVien.Size = new System.Drawing.Size(1030, 510);
+            this.dgvSinhVien.Size = new System.Drawing.Size(1014, 510);
             this.dgvSinhVien.TabIndex = 16;
             // 
             // colMaSV
@@ -402,7 +402,7 @@ namespace Window_Form_App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1727, 925);
+            this.ClientSize = new System.Drawing.Size(1822, 925);
             this.Controls.Add(this.lbPage);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnNextPage);

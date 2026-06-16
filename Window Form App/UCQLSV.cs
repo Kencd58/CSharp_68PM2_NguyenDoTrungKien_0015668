@@ -20,22 +20,29 @@ namespace Window_Form_App
             dgvSinhVien.DataSource = dssv;
         }
 
-       public UCQLSV()
+        public UCQLSV()
         {
             InitializeComponent();
             dgvSinhVien.AutoGenerateColumns = false;
 
             colMaSV.DataPropertyName = "ma_sv";
             colHoTen.DataPropertyName = "ho_ten";
-            colGioiTinh.DataPropertyName = "gioitinh";
+            colGioiTinh.DataPropertyName = "gioi_tinh";
             colNgaySinh.DataPropertyName = "ngay_sinh";
             //colLop.DataPropertyName = "ma_lop";
+            cbGioiTinh.Items.Add("Nam");
+            cbGioiTinh.Items.Add("Nữ");
+            cbGioiTinh.SelectedIndex = 0;
+            dgvSinhVien.CellClick += dgvSinhVien_CellClick;
+
+            this.Load += UCQLSV_Load;
         }
 
         private void UCQLSV_Load(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             string HoVaTen = txtHoTen.Text;
@@ -60,6 +67,24 @@ namespace Window_Form_App
             MessageBox.Show("Thêm sinh viên thành công!");
 
             LoadData();
+        }
+        private void dgvSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            DataGridViewRow row = dgvSinhVien.Rows[e.RowIndex];
+
+            txtMSV.Text = row.Cells["colMaSV"].Value?.ToString();
+            txtHoTen.Text = row.Cells["colHoTen"].Value?.ToString();
+            cbGioiTinh.Text = row.Cells["colGioiTinh"].Value?.ToString();
+
+            if (row.Cells["colNgaySinh"].Value != null)
+            {
+                dtpNgaySinh.Value = Convert.ToDateTime(row.Cells["colNgaySinh"].Value);
+            }
         }
     }
 }
