@@ -57,6 +57,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDSSVTheoLop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDSSVTheoLop.Designer.cs">
+      <DependentUpon>FrmDSSVTheoLop.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCQLLH.cs">
       <SubType>Form</SubType>
     </Compile>

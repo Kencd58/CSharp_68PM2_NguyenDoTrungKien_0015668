@@ -7,6 +7,7 @@ namespace Window_Form_App
 {
     public partial class UCQLLH : Form
     {
+
         public UCQLLH()
         {
             InitializeComponent();
@@ -18,6 +19,7 @@ namespace Window_Form_App
             delete_btn.Click += delete_btn_Click;
             refresh_btn.Click += refresh_btn_Click;
             dataGridView2.CellClick += dataGridView2_CellClick;
+            btn_dssv.Click += btn_dssv_Click;
         }
          
         private void UCQLLH_Load(object sender, EventArgs e)
@@ -173,5 +175,19 @@ namespace Window_Form_App
             txt_lop.Enabled = true;
             txt_lop.Focus();
         }
+        private void btn_dssv_Click(object sender, EventArgs e)
+        {
+            string maLop = txt_lop.Text.Trim();
+
+            if (maLop == "")
+             
+                MessageBox.Show("Vui lòng chọn lớp trước!");
+                return;
+            }
+
+            FrmDSSVTheoLop formDSSV = new FrmDSSVTheoLop(maLop);
+            formDSSV.ShowDialog();
+        }
     }
+
 }

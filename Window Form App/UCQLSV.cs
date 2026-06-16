@@ -14,6 +14,7 @@ namespace Window_Form_App
     public partial class UCQLSV : Form
 
     {
+        string maLopDangLoc = "";
         int currentPage = 1;
         int pageSize = 5;
         int totalPage = 1;
@@ -21,7 +22,14 @@ namespace Window_Form_App
         {
             DataClasses1DataContext db = new DataClasses1DataContext();
 
-            int totalRecord = db.sinh_viens.Count();
+            var query = db.sinh_viens.AsQueryable();
+
+            if (maLopDangLoc != "")
+            {
+                query = query.Where(sv => sv.ma_lop == maLopDangLoc);
+            }
+
+            int totalRecord = query.Count();
 
             totalPage = (int)Math.Ceiling((double)totalRecord / pageSize);
 
@@ -40,7 +48,7 @@ namespace Window_Form_App
                 currentPage = 1;
             }
 
-            List<sinh_vien> dssv = db.sinh_viens
+            List<sinh_vien> dssv = query
                 .OrderBy(sv => sv.ma_sv)
                 .Skip((currentPage - 1) * pageSize)
                 .Take(pageSize)
@@ -48,7 +56,14 @@ namespace Window_Form_App
 
             dgvSinhVien.DataSource = dssv;
 
-            lbPage.Text = "Trang " + currentPage + "/" + totalPage + " | " + totalRecord + " bản ghi";
+            if (maLopDangLoc != "")
+            {
+                lbPage.Text = "Lớp " + maLopDangLoc + " | Trang " + currentPage + "/" + totalPage + " | " + totalRecord + " bản ghi";
+            }
+            else
+            {
+                lbPage.Text = "Trang " + currentPage + "/" + totalPage + " | " + totalRecord + " bản ghi";
+            }
         }
         private void LoadLop()
         {
@@ -95,7 +110,11 @@ namespace Window_Form_App
 
             button2.Click += button2_Click; 
         }
-
+        public UCQLSV(string maLop) : this()
+        {
+            maLopDangLoc = maLop;
+            currentPage = 1;
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
